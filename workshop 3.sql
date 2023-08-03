@@ -135,10 +135,29 @@ select Dept_Id, avg(age),max(age), min(age), count(Dept_ID) as Empoyee_Count
 from employee group by Dept_ID;
 
 
--- 13) Retrieve the Dept_ID renamed to Department_ID, no. of Employees as Employee_number and Maximum age as Age_Max of employees in that department in which no. of Employees are greater than 2?  	
--- 14) Retrieve the Empl_ID of all teachers who joined in period 2010 to 2019 in a month October, November or December? 
+-- 13) Retrieve the Dept_ID renamed to Department_ID, no. of Employees as Employee_number and 
+--     Maximum age as Age_Max of employees in that department in which no. of Employees are greater than 2
+ 	
+select Dept_Id, avg(age),max(age), min(age), count(Dept_ID) as Empoyee_Count
+from employee group by Dept_ID having Empoyee_Count>2;
+    
+-- 14) Retrieve the Empl_ID of all teachers who joined in period 2010 to 2019 in a month October,
+--     November or December
+
+select Empl_ID,Joined_date from employee 
+where Joined_date like '201_-1_-__';
+
+select Empl_ID,Designation from employee 
+where Designation like '%Lecturer';
+
 -- 15) Retrieve the age of Employees, age after 10 years as AGE10 whose age is in set (27,39,55)?
+
+select Age, Age+10 as AGE10 from employee 
+where Age in (27, 39, 55);
+
 -- 16) Retrieve the ages of employees who have no/unknown specialization?
+
+select Age from employee where Specialization is null;
 
 
 
