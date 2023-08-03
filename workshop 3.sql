@@ -84,8 +84,61 @@ Joined_time ='00:11:30',
 Security_code='110101'
 where Empl_ID='EE002';
 
+-- DATABASE DATA MODIFICATION
+
+-- 01) Retrieve all tuples from the employee table
+select *  from employee;
+
+-- 02)Retrieve data of all attributes of Lecturers
+select * from employee where Designation ='lecturer';
+
+-- 03) Retrieve Empl_ID and Security_Code of employees whose age is greater than 25
+select Empl_ID,Security_code from employee where (Age >25);
+
+-- 4) Retrieve the Age, Joined_date of all married Employees in which the query result should be in descending order of Age?
+select Empl_ID,Age,Joined_date from employee where Married=true order by Age DESC;
+
+-- 5) Alias Head table as H and Employee table as E. Retrieve the result by Equi-joining (inner join) the two tables
+Select * from Employee as E inner join 
+Department as D on E.Dept_ID = D.Dept_ID;
+
+-- 6) Retrieve the natural join between DEPARTMENT and EMPLOYEE table
+select * from employee natural join department;
+
+-- 7) Retrieve the Left outer join, right outer join between DEPARTMENT and EMPLOYEE table
+select * from employee as  E left outer join department as D on E.Dept_ID=D.Dept_ID;
+select * from employee as  E right outer join department as D on E.Dept_ID=D.Dept_ID;
+
+-- 8) Retrieve the full outer join between HEAD and EMPLOYEE table
+(select * from employee as  E left outer join department as D on E.Dept_ID=D.Dept_ID)
+union
+(select * from employee as  E right outer join department as D on E.Dept_ID=D.Dept_ID);
+
+-- 9) Retrieve the cartesian product of two tables
+select * from employee cross join department;
+
+-- 10)Retrieve the Empl_ID as Employee_ID and corresponding Dept_Head as Department_Head who were recruited after 2017
+
+select E.Empl_ID as Employee_ID,
+D.Dept_Head as Department_Head
+from employee as E
+natural join Department As D
+ where Joined_date>'2017-12-31';
+ 
+-- 11) Retrieve different types (i.e. set) of designations in employee table
+select distinct Designation from employee;
+	
+
+-- 12) Retrieve the Dept_ID, no. of Employees and average age of employees in that department?
+
+select Dept_Id, avg(age),max(age), min(age), count(Dept_ID) as Empoyee_Count
+from employee group by Dept_ID;
 
 
+-- 13) Retrieve the Dept_ID renamed to Department_ID, no. of Employees as Employee_number and Maximum age as Age_Max of employees in that department in which no. of Employees are greater than 2?  	
+-- 14) Retrieve the Empl_ID of all teachers who joined in period 2010 to 2019 in a month October, November or December? 
+-- 15) Retrieve the age of Employees, age after 10 years as AGE10 whose age is in set (27,39,55)?
+-- 16) Retrieve the ages of employees who have no/unknown specialization?
 
 
 
